@@ -15,3 +15,6 @@ mount /mnt/Public
 
 Sync MyBookLive Public/share folder with other BitTorrent Sync clients
 
+### forked-daapd
+
+Stream music from your NAS to AirPlay compatible speakers, controlled by the Remote app on your iPad or iPhone.
