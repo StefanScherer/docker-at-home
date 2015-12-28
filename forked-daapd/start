@@ -3,7 +3,7 @@
 mkdir -p /log/forked-daapd /cache/forked-daapd
 
 /etc/init.d/dbus start
-#/etc/init.d/avahi-daemon start
+/usr/sbin/avahi-daemon --no-chroot -D
 /usr/sbin/forked-daapd -f -c /etc/forked-daapd.conf
-#/etc/init.d/avahi-daemon stop
+/usr/sbin/avahi-daemon -k
 /etc/init.d/dbus stop
