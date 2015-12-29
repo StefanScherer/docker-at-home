@@ -1,0 +1,35 @@
+btsync:
+  build: btsync
+  restart: always
+  volumes:
+    - '/mnt/Public/share:/mnt/mounted_folders/share'
+    - './btsync/sync:/mnt/sync'
+  expose:
+    - 8888
+    - 55555
+  ports:
+    - 8888:8888
+    - 55555:55555
+
+daapd:
+  build: forked-daapd
+  restart: always
+  volumes:
+    - '/mnt/Public:/media'
+    - './forked-daapd/cache:/cache'
+    - './forked-daapd/remote:/remote'
+  net: host
+  expose:
+    - 3689
+  ports:
+    - 3689:3689
+
+dockerui:
+  image: hypriot/rpi-dockerui
+  restart: always
+  volumes:
+    - '/var/run/docker.sock:/var/run/docker.sock'
+  expose:
+    - 9000
+  ports:
+    - 80:9000
