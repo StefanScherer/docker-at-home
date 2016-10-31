@@ -25,7 +25,7 @@ daapd:
     - 3689:3689
 
 dockerui:
-  image: hypriot/rpi-dockerui
+  image: hypriot/rpi-portainer
   restart: always
   volumes:
     - '/var/run/docker.sock:/var/run/docker.sock'
