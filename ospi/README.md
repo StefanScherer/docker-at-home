@@ -33,9 +33,9 @@ Connecting the wires to the OpenSprinkler Pi board will be done like this:
 
 ![](images/OpenSprinklerPi-RainDialPlus-Wiring.jpg)
 
-The first test drive before putting the OpenSprinkler Pi board into the old case.
+After removing the old boards and installing the OpenSprinkler Pi board the setup looks like this:
 
-![Connectors to OpenSprinkler Pi](images/OpenSprinklerPi-Wiring.jpg)
+![OpenSprinkler Pi installed](images/OpenSprinklerPi-Installation.jpg)
 
 ## Firmware
 
