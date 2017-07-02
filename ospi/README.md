@@ -12,7 +12,11 @@ But maintaining it is very hard, so it was time to move on to a big fat solution
 
 ## Wiring
 
-The RainDial Plus will be replaced. The following wiring is used to connect from the outdoor case to the OpenSprinkler Pi running indoors.
+The RainDial Plus will be replaced.
+
+![Indoor](images/RainDial-Plus-AVR-Wiring-Indoor.jpg)
+
+The following wiring is used to connect from the outdoor case to the OpenSprinkler Pi running indoors.
 
 ![Outdoor wiring](images/RainDial-Plus-AVR-Wiring-Outdoor.jpg)
 
