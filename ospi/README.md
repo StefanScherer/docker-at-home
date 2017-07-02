@@ -1,8 +1,8 @@
 # OpenSprinkler Pi
 
-This short weekend projects replaces my initial hardware project using the [Pollin Board](http://www.pollin.de/shop/dt/NjI5OTgxOTk-/Bauelemente_Bauteile/Entwicklerboards/Sonstige_Boards/AVR_NET_IO_Fertigmodul.html?gclid=COuLuoa-6tQCFc8K0wod6JcLww) and [Ethersex](http://www.ethersex.de/index.php/Main_Page) firmware with OpenSprinkler Pi.
+This short weekend project replaces my initial hardware project back from 2010 using the [Pollin Board](http://www.pollin.de/shop/dt/NjI5OTgxOTk-/Bauelemente_Bauteile/Entwicklerboards/Sonstige_Boards/AVR_NET_IO_Fertigmodul.html?gclid=COuLuoa-6tQCFc8K0wod6JcLww) and [Ethersex](http://www.ethersex.de/index.php/Main_Page) firmware with OpenSprinkler Pi.
 
-The good old 56 KByte web app stored in the small firmware of an ATMega644 (20 MHz, 64 KByte flash memory, 2 KByte EEPROM, 4 KByte SRAM) still did its job on my iPad 1 and 3:
+The good old 56 KByte web app stored in the small firmware of an ATMega644 (20 MHz, 64 KByte flash memory, 2 KByte EEPROM, 4 KByte SRAM) still does its job on my iPad 1 and 3. Remember at that time you could not buy a Raspberry Pi.
 
 ![RainDialPlus](images/raindialplus.png)
 
@@ -12,11 +12,11 @@ But maintaining it is very hard, so it was time to move on to a big fat solution
 
 ## Wiring
 
-The RainDial Plus will be replaced.
+The RainDial Plus AVR board will be replaced, Pollin Board, the power supply board and the relais board.
 
-![Indoor](images/RainDial-Plus-AVR-Wiring-Indoor.jpg)
+![RainDial Plus AVR Wiring](images/RainDial-Plus-AVR-Wiring-Indoor.jpg)
 
-The following wiring is used to connect from the outdoor case to the OpenSprinkler Pi running indoors.
+The following wiring is used to connect from the outdoor case of the RainDial Plus to the OpenSprinkler Pi running indoors.
 
 ![Outdoor wiring](images/RainDial-Plus-AVR-Wiring-Outdoor.jpg)
 
@@ -29,11 +29,11 @@ The following wiring is used to connect from the outdoor case to the OpenSprinkl
 * Green - 4
 * Red - 5
 
-The indoor wiring
+Connecting the wires to the OpenSprinkler Pi board will be done like this:
 
 ![](images/OpenSprinklerPi-RainDialPlus-Wiring.jpg)
 
-The intermediate wiring
+The first test drive before putting the OpenSprinkler Pi board into the old case.
 
 ![Connectors to OpenSprinkler Pi](images/OpenSprinklerPi-Wiring.jpg)
 
@@ -107,3 +107,9 @@ ospi:
 ## Backup
 
 Use the OpenSprinkler UI or iOS/Android app to save a backup.
+
+## Docs
+
+- Wiki - http://rayshobby.net/ospi/
+- User Manual - http://rayshobby.net/ospi/opensprinkler-pi-online-user-manual/
+- FAQ - https://opensprinkler.com/faq/
