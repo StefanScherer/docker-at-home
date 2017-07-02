@@ -1,0 +1,10 @@
+ospi:
+  image: stefanscherer/ospi:2.1.7
+  restart: always
+  privileged: true
+  volumes:
+    - '/dev/mem:/dev/mem'
+  expose:
+    - 8080
+  ports:
+    - 8080:8080
