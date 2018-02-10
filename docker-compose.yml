@@ -24,12 +24,30 @@ daapd:
   ports:
     - 3689:3689
 
-dockerui:
+portainer:
   image: hypriot/rpi-portainer
   restart: always
   volumes:
     - '/var/run/docker.sock:/var/run/docker.sock'
+    - './portainer:/data'
   expose:
     - 9000
   ports:
     - 80:9000
+
+samba:
+  image: dastrasmue/rpi-samba:v3
+  hostname: 'pi4'
+  restart: always
+  volumes:
+    - '/var/run/docker.sock:/var/run/docker.sock'
+    - './portainer:/data'
+  ports:
+    - 137:137/udp
+    - 138:138/udp
+    - 139:139
+    - 445:445
+    - 445:445/udp
+  volumes:
+    - './samba:/share/stick'
+  command: -s "Public:/share/stick:rw:"

@@ -31,7 +31,10 @@ Sync MyBookLive Public/share folder with other BitTorrent Sync clients
 
 Stream music from your NAS to AirPlay compatible speakers, controlled by the Remote app on your iPad or iPhone.
 
-### dockerui
+### portainer
 
 A web UI with a dashboard of all containers running.
 
+### samba
+
+Share a public folder via SMB for our Canon MF850Cdn printer/scanner.
