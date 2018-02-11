@@ -1,23 +1,24 @@
-btsync:
-  build: btsync
-  restart: always
-  volumes:
-    - '/mnt/Public/share:/mnt/mounted_folders/share'
-    - './btsync/sync:/mnt/sync'
-  expose:
-    - 8888
-    - 55555
-  ports:
-    - 8888:8888
-    - 55555:55555
+# btsync:
+#  build: btsync
+#  restart: always
+#  volumes:
+#    - '/mnt/Public/share:/mnt/mounted_folders/share'
+#    - './data/btsync:/mnt/sync'
+#  expose:
+#    - 8888
+#    - 55555
+#  ports:
+#    - 8888:8888
+#    - 55555:55555
 
 daapd:
   build: forked-daapd
+  # image: stefanscherer/rpi-forked-daapd:22.0
   restart: always
   volumes:
     - '/mnt/Public:/media'
-    - './forked-daapd/cache:/cache'
-    - './forked-daapd/remote:/remote'
+    - './data/forked-daapd/cache:/cache'
+    - './data/forked-daapd/remote:/remote'
   net: host
   expose:
     - 3689
@@ -25,18 +26,19 @@ daapd:
     - 3689:3689
 
 portainer:
-  image: hypriot/rpi-portainer
+  image: portainer/portainer:1.16.2
   restart: always
   volumes:
     - '/var/run/docker.sock:/var/run/docker.sock'
-    - './portainer:/data'
+    - './data/portainer:/data'
   expose:
     - 9000
   ports:
     - 80:9000
 
 samba:
-  image: dastrasmue/rpi-samba:v3
+  build: samba
+  # image: stefanscherer/rpi-samba:4.7.3
   hostname: 'pi4'
   restart: always
   ports:
@@ -46,5 +48,5 @@ samba:
     - 445:445
     - 445:445/udp
   volumes:
-    - './samba:/share/stick'
-  command: -s "Scanner:/share/stick:rw:"
+    - './data/samba:/share/scanner'
+  command: -s "Scanner:/share/scanner:rw:"

@@ -1,4 +1,3 @@
 *.tar.gz
 music/
-samba/
-portainer/
+data/
