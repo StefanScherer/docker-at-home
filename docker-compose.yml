@@ -39,9 +39,6 @@ samba:
   image: dastrasmue/rpi-samba:v3
   hostname: 'pi4'
   restart: always
-  volumes:
-    - '/var/run/docker.sock:/var/run/docker.sock'
-    - './portainer:/data'
   ports:
     - 137:137/udp
     - 138:138/udp
@@ -50,4 +47,4 @@ samba:
     - 445:445/udp
   volumes:
     - './samba:/share/stick'
-  command: -s "Public:/share/stick:rw:"
+  command: -s "Scanner:/share/stick:rw:"
