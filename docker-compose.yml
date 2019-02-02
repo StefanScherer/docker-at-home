@@ -25,6 +25,12 @@ daapd:
   ports:
     - 3689:3689
 
+youtvfetcher:
+  image: stefanscherer/youtvfetcher:latest
+  volumes:
+    - '/mnt/Public/Shared Videos/Carina:/media'
+  working_dir: '/media'
+
 portainer:
   image: portainer/portainer:1.16.2
   restart: always
