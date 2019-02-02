@@ -27,7 +27,9 @@ daapd:
 
 youtvfetcher:
   image: stefanscherer/youtvfetcher:latest
+  restart: always
   volumes:
+    - './youtvfetcher/.youtvfetcher.json:/root/.youtvfetcher.json'
     - '/mnt/Public/Shared Videos/Carina:/media'
   working_dir: '/media'
 
