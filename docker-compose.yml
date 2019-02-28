@@ -17,6 +17,7 @@ services:
       - './music:/media'
       - './data/forked-daapd/cache:/cache'
       - './data/forked-daapd/remote:/remote'
+      - './forked-daapd/forked-daapd.conf:/etc/forked-daapd.conf'
     network_mode: host
     expose:
       - 3689
