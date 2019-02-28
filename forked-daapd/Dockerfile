@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:jessie
+FROM ubuntu
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBIAN_PRIORITY critical
@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y forked-daapd && \
     rm -Rf /var/lib/apt/lists/*
 
 VOLUME /media
-COPY forked-daapd.conf /etc/forked-daapd.conf
 COPY start /usr/sbin/start
 
 EXPOSE 3689
