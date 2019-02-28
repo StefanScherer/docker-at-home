@@ -1,60 +1,58 @@
-# btsync:
-#  build: btsync
-#  restart: always
-#  volumes:
-#    - '/mnt/Public/share:/mnt/mounted_folders/share'
-#    - './data/btsync:/mnt/sync'
-#  expose:
-#    - 8888
-#    - 55555
-#  ports:
-#    - 8888:8888
-#    - 55555:55555
+version: '3.5'
 
-daapd:
-  build: forked-daapd
-  # image: stefanscherer/rpi-forked-daapd:22.0
-  restart: always
-  volumes:
-    - '/mnt/Public:/media'
-    - './data/forked-daapd/cache:/cache'
-    - './data/forked-daapd/remote:/remote'
-  net: host
-  expose:
-    - 3689
-  ports:
-    - 3689:3689
+volumes:
+  videos:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=192.168.1.110
+      device: ":/nfs/Public/Shared Videos/Carina"
 
-youtvfetcher:
-  image: stefanscherer/youtvfetcher:latest
-  restart: always
-  volumes:
-    - './youtvfetcher/.youtvfetcher.json:/root/.youtvfetcher.json'
-    - '/mnt/Public/Shared Videos/Carina:/media'
-  working_dir: '/media'
+services:
+  daapd:
+    # build: forked-daapd
+    image: stefanscherer/rpi-forked-daapd:25.0
+    restart: always
+    volumes:
+      - './music:/media'
+      - './data/forked-daapd/cache:/cache'
+      - './data/forked-daapd/remote:/remote'
+    network_mode: host
+    expose:
+      - 3689
+    ports:
+      - 3689:3689
 
-portainer:
-  image: portainer/portainer:1.16.2
-  restart: always
-  volumes:
-    - '/var/run/docker.sock:/var/run/docker.sock'
-    - './data/portainer:/data'
-  expose:
-    - 9000
-  ports:
-    - 80:9000
+  youtvfetcher:
+    image: stefanscherer/youtvfetcher:latest
+    restart: always
+    volumes:
+      - './youtvfetcher/.youtvfetcher.json:/root/.youtvfetcher.json'
+      - "videos:/videos/"
+    working_dir: '/videos'
 
-samba:
-  build: samba
-  # image: stefanscherer/rpi-samba:4.7.3
-  hostname: 'pi4'
-  restart: always
-  ports:
-    - 137:137/udp
-    - 138:138/udp
-    - 139:139
-    - 445:445
-    - 445:445/udp
-  volumes:
-    - './data/samba:/share/scanner'
-  command: -s "Scanner:/share/scanner:rw:"
+  portainer:
+    image: portainer/portainer:1.20.1
+    restart: always
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - './data/portainer:/data'
+    expose:
+      - 9000
+    ports:
+      - 80:9000
+
+  samba:
+    # build: samba
+    image: stefanscherer/rpi-samba:4.7.6
+    hostname: 'pi128'
+    restart: always
+    ports:
+      - 137:137/udp
+      - 138:138/udp
+      - 139:139
+      - 445:445
+      - 445:445/udp
+    volumes:
+      - './data/samba:/share/scanner'
+    command: -s "Scanner:/share/scanner:rw:"
