@@ -24,6 +24,21 @@ services:
     ports:
       - 3689:3689
 
+  papa-daapd:
+    # build: forked-daapd
+    image: stefanscherer/rpi-forked-daapd:25.0
+    restart: always
+    volumes:
+      - './music:/media'
+      - './data/papa-daapd/cache:/cache'
+      - './data/papa-daapd/remote:/remote'
+      - './papa-daapd/forked-daapd.conf:/etc/forked-daapd.conf'
+    network_mode: host
+    expose:
+      - 3789
+    ports:
+      - 3789:3789
+
   youtvfetcher:
     image: stefanscherer/youtvfetcher:latest
     restart: always
