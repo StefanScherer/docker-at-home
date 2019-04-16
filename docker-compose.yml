@@ -71,4 +71,5 @@ services:
       - 445:445/udp
     volumes:
       - './data/samba:/share/scanner'
-    command: -s "Scanner:/share/scanner:rw:"
+      - './music:/share/music'
+    command: -s "Scanner:/share/scanner:rw:" -s "Music:/share/music:rw:"
