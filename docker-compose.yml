@@ -78,15 +78,17 @@ services:
     image: pihole/pihole:latest
     restart: always
     ports:
-      - 53:53
-      - 67:67
-      - 8080:80
-      - 443:443
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "8080:80/tcp"
+      - "443:443/tcp"
     environment:
       TZ: "Europe/Berlin"
       WEBPASSWORD: "${PIHOLE_WEBPASSWORD}"
     dns:
       - 127.0.0.1
+      - 192.168.1.1
       - 1.1.1.1
     volumes:
       - ./pihole/etc/:/etc/pihole/
