@@ -9,8 +9,7 @@ volumes:
       device: ":/nfs/Public/Shared Videos/Carina"
 
 services:
-  daapd:
-    # build: forked-daapd
+  daapd: # build: forked-daapd
     image: stefanscherer/rpi-forked-daapd:25.0
     restart: always
     volumes:
@@ -73,3 +72,25 @@ services:
       - './data/samba:/share/scanner'
       - './music:/share/music'
     command: -s "Scanner:/share/scanner:rw:" -s "Music:/share/music:rw:"
+
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: always
+    ports:
+      - 53:53
+      - 67:67
+      - 8080:80
+      - 443:443
+    environment:
+      TZ: "Europe/Berlin"
+      WEBPASSWORD: "${PIHOLE_WEBPASSWORD}"
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    volumes:
+      - ./pihole/etc/:/etc/pihole/
+      - ./pihole/dnsmasq.d/:/etc/dnsmasq.d/
+      - ./pihole/pihole.log:/var/log/pihole.log
+    cap_add:
+      - NET_ADMIN
