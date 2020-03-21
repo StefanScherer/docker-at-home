@@ -75,7 +75,7 @@ services:
 
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest
+    image: pihole/pihole:v4.4
     restart: always
     ports:
       - "53:53/tcp"
