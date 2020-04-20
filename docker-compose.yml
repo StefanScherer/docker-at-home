@@ -9,8 +9,8 @@ volumes:
       device: ":/nfs/Public/Shared Videos/Carina"
 
 services:
-  daapd: # build: forked-daapd
-    image: stefanscherer/rpi-forked-daapd:25.0
+  daapd:
+    image: linuxserver/daapd:27.1-ls18
     restart: always
     volumes:
       - './music:/media'
@@ -18,21 +18,28 @@ services:
       - './data/forked-daapd/remote:/remote'
       - './forked-daapd/forked-daapd.conf:/etc/forked-daapd.conf'
     network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=999
+      - TZ=Europe/Berlin
     expose:
       - 3689
     ports:
       - 3689:3689
 
   papa-daapd:
-    # build: forked-daapd
-    image: stefanscherer/rpi-forked-daapd:25.0
+    image: linuxserver/daapd:27.1-ls18
     restart: always
     volumes:
       - './music:/media'
       - './data/papa-daapd/cache:/cache'
       - './data/papa-daapd/remote:/remote'
-      - './papa-daapd/forked-daapd.conf:/etc/forked-daapd.conf'
+      - './papa-daapd/forked-daapd.conf:/config/forked-daapd.conf'
     network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=999
+      - TZ=Europe/Berlin
     expose:
       - 3789
     ports:
