@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  youtvfetcher:
+    image: stefanscherer/youtvfetcher:hd
+    restart: always
+    volumes:
+      - './youtvfetcher/.youtvfetcher.json:/root/.youtvfetcher.json'
+      - "/srv/dev-disk-by-label-data1/stefan/Movies/:/videos/"
+    working_dir: '/videos'
+
+  portainer:
+    image: portainer/portainer:1.24.1
+    restart: always
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - './data/portainer:/data'
+    expose:
+      - 9000
+    ports:
+      - 9000:9000
