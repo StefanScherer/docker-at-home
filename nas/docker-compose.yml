@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   youtvfetcher:
-    image: stefanscherer/youtvfetcher:hd
+    image: stefanscherer/youtvfetcher:hd-hq
     restart: always
     volumes:
       - './youtvfetcher/.youtvfetcher.json:/root/.youtvfetcher.json'
