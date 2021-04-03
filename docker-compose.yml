@@ -10,7 +10,7 @@ volumes:
 
 services:
   daapd:
-    image: linuxserver/daapd:27.1-ls18
+    image: linuxserver/daapd:27.4-ls39
     restart: always
     volumes:
       - './music:/media'
@@ -28,7 +28,7 @@ services:
       - 3689:3689
 
   papa-daapd:
-    image: linuxserver/daapd:27.1-ls18
+    image: linuxserver/daapd:27.4-ls39
     restart: always
     volumes:
       - './music:/media'
@@ -45,16 +45,8 @@ services:
     ports:
       - 3789:3789
 
-  youtvfetcher:
-    image: stefanscherer/youtvfetcher:latest
-    restart: always
-    volumes:
-      - './youtvfetcher/.youtvfetcher.json:/root/.youtvfetcher.json'
-      - "videos:/videos/"
-    working_dir: '/videos'
-
   portainer:
-    image: portainer/portainer:1.23.2
+    image: portainer/portainer:1.24.1
     restart: always
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
@@ -82,7 +74,7 @@ services:
 
   pihole:
     container_name: pihole
-    image: pihole/pihole:v4.4
+    image: pihole/pihole:v5.7
     restart: always
     ports:
       - "53:53/tcp"
