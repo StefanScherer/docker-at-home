@@ -6,16 +6,32 @@ services:
     restart: always
     volumes:
       - './youtvfetcher/.youtvfetcher.json:/root/.youtvfetcher.json'
-      - "/srv/dev-disk-by-label-data1/stefan/Movies/:/videos/"
+      - "/srv/dev-disk-by-uuid-a403cd9c-cf83-44c8-92dd-45769f088b6b/stefan/Movies/:/videos/"
     working_dir: '/videos'
 
+  stefan-daapd:
+    # image: linuxserver/daapd:28.8-ls124
+    image: linuxserver/daapd:27.4-ls39
+    restart: always
+    volumes:
+      - "/srv/dev-disk-by-uuid-a403cd9c-cf83-44c8-92dd-45769f088b6b/familie/Music/:/media/"
+      - './data/stefan-daapd/cache/:/cache/'
+      - './data/stefan-daapd/remote/:/remote/'
+      - './stefan-daapd/:/config/'
+    network_mode: host
+    environment:
+      - PUID=1001
+      - PGID=1000
+      - TZ=Europe/Berlin
+    # ports:
+    #   - 3789:3789
+
   portainer:
-    image: portainer/portainer:1.24.1
+    image: portainer/portainer-ce:2.19.1
     restart: always
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
       - './data/portainer:/data'
-    expose:
-      - 9000
     ports:
       - 9000:9000
+      # - 9443:9443
