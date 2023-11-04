@@ -1,8 +1,0 @@
-*.tar.gz
-music/
-data/
-youtvfetcher/.youtvfetcher.json
-.env
-*.log
-pihole/dnsmasq.d/
-pihole/etc/

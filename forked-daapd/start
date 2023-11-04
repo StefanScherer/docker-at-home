@@ -1,9 +1,0 @@
-#!/bin/sh
-
-mkdir -p /cache/forked-daapd
-
-/etc/init.d/dbus start
-/usr/sbin/avahi-daemon --no-chroot -D
-/usr/sbin/forked-daapd -f -c /etc/forked-daapd.conf
-/usr/sbin/avahi-daemon -k
-/etc/init.d/dbus stop

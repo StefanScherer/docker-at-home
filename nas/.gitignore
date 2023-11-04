@@ -1,2 +1,6 @@
 data/
 youtvfetcher/
+.env
+*.log
+pihole/dnsmasq.d/
+pihole/etc/

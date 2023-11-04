@@ -1,33 +1,9 @@
 # Docker at home
 
-## Setup NFS on Docker host
+## NAS
 
-```
-apt-get update && apt-get install -y nfs-common
-```
+In the folder `nas` are some services. openmediavault runs on the host, other services run in docker, e.g portainer, forked-daapd, pihole, youtvfetcher
 
-## Run all containers
+## Open Sprinkler
 
-```
-docker-compose up -d
-```
-
-## Monitor the containers
-
-```
-open http://music
-```
-
-## Services
-
-### forked-daapd
-
-Stream local music to AirPlay compatible speakers, controlled by the Remote app on your iPad or iPhone.
-
-### portainer
-
-A web UI with a dashboard of all containers running.
-
-### samba
-
-Share a public folder via SMB for our Canon MF850Cdn printer/scanner.
+In the folder `ospi` is our sprinkler system.

@@ -3,6 +3,7 @@ version: '3.5'
 services:
   youtvfetcher:
     image: stefanscherer/youtvfetcher:hd-hq
+    container_name: youtvfetcher
     restart: always
     volumes:
       - './youtvfetcher/.youtvfetcher.json:/root/.youtvfetcher.json'
@@ -12,6 +13,7 @@ services:
   stefan-daapd:
     # image: linuxserver/daapd:28.8-ls124
     image: linuxserver/daapd:27.4-ls39
+    container_name: stefan-daapd
     restart: always
     volumes:
       - "/srv/dev-disk-by-uuid-a403cd9c-cf83-44c8-92dd-45769f088b6b/familie/Music/:/media/"
@@ -21,13 +23,53 @@ services:
     network_mode: host
     environment:
       - PUID=1001
-      - PGID=1000
+      - PGID=100
       - TZ=Europe/Berlin
     # ports:
     #   - 3789:3789
 
+  unifi:
+    image: jacobalberty/unifi:v7.5.176
+    container_name: unifi
+    restart: unless-stopped
+    volumes:
+      - './data/unifi/:/unifi/'
+    environment:
+      - TZ=Europe/Berlin
+    user: unifi
+    ports:
+      # - 8080:8080
+      - 8443:8443
+      - 3478:3478/udp
+
+  pihole:
+    container_name: pihole
+    # image: pihole/pihole:v5.7
+    image: pihole/pihole:2023.10.0
+    restart: always
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "8080:80/tcp"
+      - "443:443/tcp"
+    environment:
+      TZ: "Europe/Berlin"
+      WEBPASSWORD: "${PIHOLE_WEBPASSWORD}"
+    dns:
+      - 127.0.0.1
+      - 192.168.1.1
+      - 1.1.1.1
+    volumes:
+      - ./data/pihole/etc/:/etc/pihole/
+      - ./data/pihole/dnsmasq.d/:/etc/dnsmasq.d/
+      - ./data/pihole/pihole.log:/var/log/pihole.log
+    cap_add:
+      - NET_ADMIN
+
   portainer:
     image: portainer/portainer-ce:2.19.1
+    container_name: portainer
     restart: always
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
