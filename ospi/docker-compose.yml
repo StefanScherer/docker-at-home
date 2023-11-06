@@ -6,9 +6,9 @@ services:
     privileged: true
     volumes:
       - '/dev/mem:/dev/mem'
-      - './data/logs:/logs'
-      - './data/nvm.dat:/nvm.dat'
-      - './data/stns.dat:/stns.dat'
+      - './data/ospi/logs:/logs'
+      - './data/ospi/nvm.dat:/nvm.dat'
+      - './data/ospi/stns.dat:/stns.dat'
     expose:
       - 8080
     ports:
