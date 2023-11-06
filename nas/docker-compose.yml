@@ -11,8 +11,7 @@ services:
     working_dir: '/videos'
 
   stefan-daapd:
-    # image: linuxserver/daapd:28.8-ls124
-    image: linuxserver/daapd:27.4-ls39
+    image: linuxserver/daapd:28.8-ls124
     container_name: stefan-daapd
     restart: always
     volumes:
