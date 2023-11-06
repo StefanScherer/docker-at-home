@@ -1,5 +1,4 @@
 # OpenSprinkler Pi
-[![Build Status](https://travis-ci.org/StefanScherer/OpenSprinkler-Firmware.svg?branch=master)](https://travis-ci.org/StefanScherer/OpenSprinkler-Firmware)
 
 This short weekend project replaces my initial hardware project back from 2010 using the [Pollin Board](http://www.pollin.de/shop/dt/NjI5OTgxOTk-/Bauelemente_Bauteile/Entwicklerboards/Sonstige_Boards/AVR_NET_IO_Fertigmodul.html?gclid=COuLuoa-6tQCFc8K0wod6JcLww) and [Ethersex](http://www.ethersex.de/index.php/Main_Page) firmware with OpenSprinkler Pi.
 
