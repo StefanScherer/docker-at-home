@@ -9,7 +9,7 @@ services:
     working_dir: '/videos'
 
   stefan-daapd:
-    image: linuxserver/daapd:28.8-ls124
+    image: linuxserver/daapd:28.9.20240214
     container_name: stefan-daapd
     restart: always
     volumes:
@@ -26,7 +26,7 @@ services:
     #   - 3789:3789
 
   unifi:
-    image: jacobalberty/unifi:v7.5.176
+    image: jacobalberty/unifi:v8.0.28
     container_name: unifi
     restart: unless-stopped
     volumes:
@@ -41,8 +41,7 @@ services:
 
   pihole:
     container_name: pihole
-    # image: pihole/pihole:v5.7
-    image: pihole/pihole:2023.10.0
+    image: pihole/pihole:2024.02.0
     restart: always
     ports:
       - "53:53/tcp"
@@ -65,7 +64,7 @@ services:
       - NET_ADMIN
 
   portainer:
-    image: portainer/portainer-ce:2.19.1
+    image: portainer/portainer-ce:2.19.4
     container_name: portainer
     restart: always
     volumes:
