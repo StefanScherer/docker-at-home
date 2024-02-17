@@ -1,13 +1,26 @@
-ospi:
-  image: stefanscherer/ospi:2.1.7
-  restart: always
-  privileged: true
-  volumes:
-    - '/dev/mem:/dev/mem'
-    - './data/logs:/logs'
-    - './data/nvm.dat:/nvm.dat'
-    - './data/stns.dat:/stns.dat'
-  expose:
-    - 8080
-  ports:
-    - 8080:8080
+services:
+  ospi:
+    image: stefanscherer/ospi:2.1.7
+    container_name: ospi
+    restart: always
+    privileged: true
+    volumes:
+      - '/dev/mem:/dev/mem'
+      - './data/ospi/logs:/logs'
+      - './data/ospi/nvm.dat:/nvm.dat'
+      - './data/ospi/stns.dat:/stns.dat'
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+
+  portainer:
+    image: portainer/portainer-ce:2.19.1
+    container_name: portainer
+    restart: always
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - './data/portainer:/data'
+    ports:
+      - 9000:9000
+      # - 9443:9443
