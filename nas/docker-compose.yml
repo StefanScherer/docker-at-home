@@ -17,7 +17,7 @@ services:
     #   - 3789:3789
 
   unifi:
-    image: jacobalberty/unifi:v8.0.28
+    image: jacobalberty/unifi:v9.0.114
     container_name: unifi
     restart: unless-stopped
     volumes:
