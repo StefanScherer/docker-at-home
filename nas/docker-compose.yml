@@ -57,7 +57,7 @@ services:
       - NET_ADMIN
 
   portainer:
-    image: portainer/portainer-ce:2.19.4
+    image: portainer/portainer-ce:2.27.0
     container_name: portainer
     restart: always
     volumes:
