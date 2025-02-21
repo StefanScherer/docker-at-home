@@ -1,13 +1,4 @@
 services:
-  youtvfetcher:
-    image: stefanscherer/youtvfetcher:hd-hq
-    container_name: youtvfetcher
-    restart: always
-    volumes:
-      - './youtvfetcher/.youtvfetcher.json:/root/.youtvfetcher.json'
-      - "/srv/dev-disk-by-uuid-a403cd9c-cf83-44c8-92dd-45769f088b6b/stefan/Movies/:/videos/"
-    working_dir: '/videos'
-
   stefan-daapd:
     image: linuxserver/daapd:28.9.20240214
     container_name: stefan-daapd
@@ -41,7 +32,7 @@ services:
 
   pihole:
     container_name: pihole
-    image: pihole/pihole:2024.02.0
+    image: pihole/pihole:2025.02.3
     restart: always
     ports:
       - "53:53/tcp"
@@ -51,7 +42,9 @@ services:
       - "443:443/tcp"
     environment:
       TZ: "Europe/Berlin"
-      WEBPASSWORD: "${PIHOLE_WEBPASSWORD}"
+      FTLCONF_webserver_api_password: "${PIHOLE_WEBPASSWORD}"
+      FTLCONF_misc_etc_dnsmasq_d: "true"
+      FTLCONF_dns_listeningMode: "all"
     dns:
       - 127.0.0.1
       - 192.168.1.1
