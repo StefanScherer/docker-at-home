@@ -1,6 +1,6 @@
 services:
   stefan-daapd:
-    image: linuxserver/daapd:28.9.20240214
+    image: linuxserver/daapd:28.10.20250118
     container_name: stefan-daapd
     restart: always
     volumes:
